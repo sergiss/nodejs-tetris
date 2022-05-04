@@ -1,0 +1,19 @@
+{
+  "name": "blessed-test",
+  "version": "1.0.0",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Sergio S.",
+  "license": "ISC",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.10.1",
+    "child_process": "^1.0.2",
+    "fs": "0.0.1-security",
+    "jimp": "^0.16.1"
+  },
+  "description": "Tetris game for nodejs"
+}
