@@ -32,10 +32,30 @@ let level;
 let score;
 let time;
 
-let keyLeft  = new Key(0.15);
+let keyLeft = new Key(0.15);
 let keyRight = new Key(0.15);
-let keyDown  = new Key(0.20);
-let keyUp    = new Key();
+let keyDown = new Key(0.20);
+let keyUp = new Key();
+
+screen.key(["left", "right", "up", "down", "space"], function (ch, key) {
+  const name = key.name;
+  switch (name) {
+    case "left":
+      keyLeft.setState(1);
+      break;
+    case "up":
+    case "space":
+      keyUp.setState(1);
+      break;
+    case "right":
+      keyRight.setState(1);
+      break;
+    case "down":
+      keyDown.setState(1);
+      break;
+  }
+  return true;
+});
 
 const loop = (dt) => {
 
@@ -105,7 +125,7 @@ function update(dt) {
 }
 
 let box;
-let renderer = function(x, y, color) {
+let renderer = function (x, y, color) {
   blessed.box({
     parent: box,
     left: x << 1,
@@ -133,7 +153,7 @@ function render() {
   });
 
   grid.render(renderer);
-  if(currentShape != null) currentShape.render(renderer);
+  if (currentShape != null) currentShape.render(renderer);
   screen.render();
 
   // clear screen
@@ -158,15 +178,6 @@ function requestAnimationFrame(callback) {
   setTimeout(function () {
     callback(diff * 0.001);
   }, Math.max(0, diff - dt));
-}
-
-function getRandomColor() {
-  var letters = "0123456789ABCDEF";
-  var color = "#";
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
 }
 
 init();
